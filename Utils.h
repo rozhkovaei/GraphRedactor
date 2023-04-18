@@ -1,0 +1,47 @@
+#pragma once
+
+struct Point
+{
+    int x;
+    int y;
+};
+
+enum class FigureType
+{
+    RECTANGLE = 0,
+    CIRCLE,
+    TRIANGLE
+};
+
+enum class ButtonType
+{
+    CREATE_BUTTON = 0,
+    IMPORT_BUTTON,
+    EXPORT_BUTTON,
+    DELETE_BUTTON,
+    DRAW_RECT_BUTTON,
+    DRAW_CIRCLE_BUTTON,
+    DRAW_TRIANGLE_BUTTON
+};
+
+struct FigureData
+{
+    Point point1;
+    Point point2;
+};
+
+enum class EventType
+{
+    BUTTON_CREATE_PRESSED = 0,
+    BUTTON_IMPORT_PRESSED,
+    BUTTON_EXPORT_PRESSED,
+    BUTTON_DRAW_RECT_PRESSED,
+    BUTTON_DRAW_CIRCLE_PRESSED,
+    BUTTON_DRAW_TRIANGLE_PRESSED,
+    BUTTON_DELETE_PRESSED,
+    USER_DRAW_ON_PANEL,
+    DRAW_RECTANGLE_FIGURE,
+    DRAW_CIRCLE_FIGURE,
+    DRAW_TRIANGLE_FIGURE,
+    DELETE_FIGURE
+};

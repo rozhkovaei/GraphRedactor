@@ -1,0 +1,43 @@
+name: Documentation
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the main branch
+on:
+  push:
+    branches: [ main ]
+
+permissions:
+  contents: write
+  pages: write
+  deployments: write
+  id-token: write
+  
+jobs:
+  build-documentation:
+    runs-on: ubuntu-latest
+
+    environment:
+     name: github-pages
+     url: ${{ steps.deployment.outputs.page_url }}
+     
+    steps:
+    - uses: actions/checkout@v2
+    
+    # Build the HTML documentation
+    - name: Doxygen Action
+      uses: mattnotmitt/doxygen-action@v1.1.0
+      with:
+          doxyfile-path: ./Doxyfile
+          working-directory: .
+    
+    - name: Upload Docs
+      uses: actions/upload-pages-artifact@v1
+      with:
+          path: doc/html
+        
+    - name: Setup Pages
+      uses: actions/configure-pages@v2
+        
+    - name: Deploy To GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v1
